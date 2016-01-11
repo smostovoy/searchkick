@@ -181,6 +181,10 @@ module Searchkick
           end
       end
 
+      if options[:scope]
+        records = records.all.merge(options[:scope])
+      end
+
       if records.respond_to?(:primary_key) && records.primary_key
         # ActiveRecord
         records.where(records.primary_key => ids)

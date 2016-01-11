@@ -107,4 +107,11 @@ class SqlTest < Minitest::Test
     store_names ["Product A"]
     assert Product.search("product", include: [:store]).first.association(:store).loaded?
   end
+
+  def test_scope
+    skip unless defined?(ActiveRecord)
+    store_names ["Product A", "Product B"]
+    product_a, product_b = Product.all.to_a
+    assert Product.search("product", scope: Product.where(id: product_a.id)).to_a == [product_a]
+  end
 end

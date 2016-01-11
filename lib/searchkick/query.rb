@@ -95,6 +95,7 @@ module Searchkick
           padding: @padding,
           load: @load,
           includes: options[:include] || options[:includes],
+          scope: options[:scope],
           json: !options[:json].nil?,
           match_suffix: @match_suffix,
           highlighted_fields: @highlighted_fields || []
